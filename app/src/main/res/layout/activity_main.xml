@@ -6,13 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="24dp"
+        android:text="@string/start_game"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/switch1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnGrapes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1.5"
+            android:text="@string/grapes"
+            app:icon="@drawable/ic_favourite_foreground"
+            app:iconSize="50dp"
+            app:iconTint="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnApple"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1.5"
+            android:text="@string/apple"
+            app:icon="@drawable/ic_satisfied_foreground"
+            app:iconSize="50dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1.5"
+            android:text="@string/random"
+            android:textAlignment="viewStart"
+            app:icon="@drawable/ic_refresh_foreground"
+            app:iconPadding="1dp"
+            app:iconSize="50dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
