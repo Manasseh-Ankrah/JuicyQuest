@@ -14,8 +14,8 @@ class MainActivity : AppCompatActivity() {
     private var isGuessSelected: Boolean = false
     private var isRandomSelected: Boolean = false
 
-    private var selectedGuessImage = R.drawable.ic_pic_foreground
-    private var selectedRandomImage = R.drawable.ic_pic_foreground
+    private var selectedGuessImage = R.drawable.bg2
+    private var selectedRandomImage = R.drawable.bg2
     private var wins = 0
     private var losses = 0
 
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleClickedGrapes(it: View) {
         if (isRandomSelected) {
-            binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
+            binding.imageRandom.setImageResource(R.drawable.bg2)
         }
         if (isToggled) {
             binding.imageGuess.setImageResource(R.drawable.grapes)
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleClickedApple(it: View) {
         if (isRandomSelected) {
-            binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
+            binding.imageRandom.setImageResource(R.drawable.bg2)
         }
         if (isToggled) {
             binding.imageGuess.setImageResource(R.drawable.apple)
@@ -127,8 +127,8 @@ class MainActivity : AppCompatActivity() {
     private fun handleReset(isChecked: Boolean) {
         if (!isChecked) {
 //            Log.w("Switch isChecked", "value $isChecked")
-            binding.imageGuess.setImageResource(R.drawable.ic_pic_foreground)
-            binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
+            binding.imageGuess.setImageResource(R.drawable.bg2)
+            binding.imageRandom.setImageResource(R.drawable.bg2)
             isGuessSelected = false
             binding.wonCount.text = "0"
             binding.lostCount.text = "0"
