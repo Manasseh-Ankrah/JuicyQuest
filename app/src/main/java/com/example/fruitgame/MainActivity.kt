@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val fruitList = listOf(R.drawable.apple,R.drawable.grapes,R.drawable.orange)
 
         binding.switchStart.setOnCheckedChangeListener {_, isChecked ->
+            handleSwitchText(isChecked)
             handleStart(isChecked)
             handleReset(isChecked)
         }
@@ -64,6 +65,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun handleSwitchText(isChecked: Boolean) {
+        if (isChecked) {
+            binding.switchStart.text = "Stop Game"
+        } else {
+            binding.switchStart.text = "Start Game"
+        }
     }
 
     private fun handleReset(isChecked: Boolean) {
