@@ -16,6 +16,9 @@ class MainActivity : AppCompatActivity() {
 
     private var selectedGuessImage = R.drawable.ic_pic_foreground
     private var selectedRandomImage = R.drawable.ic_pic_foreground
+    private var wins = 0
+    private var losses = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
             binding.btnGrapes.setOnClickListener {
                 handleClickedGrapes(it)
             }
@@ -51,8 +53,6 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-
-
     }
 
     private fun handleClickedRandom(
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         val shuffle = fruitList.shuffled().first()
         if (isToggled) {
             if (!isGuessSelected) {
-                Snackbar.make(it, "Choose guess image to proceed", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(it, "Choose guess image to proceed", Snackbar.LENGTH_SHORT).show()
             } else {
                 binding.imageRandom.setImageResource(shuffle)
                 selectedRandomImage = shuffle
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                 handleGameOutcome(it)
             }
         } else {
-            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             selectedGuessImage = R.drawable.grapes
 
         } else {
-            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_SHORT).show()
         }
     }
 
@@ -99,15 +99,19 @@ class MainActivity : AppCompatActivity() {
             selectedGuessImage = R.drawable.apple
 
         } else {
-            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_SHORT).show()
         }
     }
 
     private fun handleGameOutcome(it: View) {
         if (selectedGuessImage === selectedRandomImage) {
-            Snackbar.make(it, "Congratulations, you won!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(it, "Congratulations, you won!", Snackbar.LENGTH_SHORT).show()
+            wins++
+            binding.wonCount.text = wins.toString()
         } else {
-            Snackbar.make(it, "Oopps, you lost!", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(it, "Oopps, you lost!", Snackbar.LENGTH_SHORT).show()
+            losses++
+            binding.lostCount.text = losses.toString()
         }
     }
 
@@ -125,6 +129,11 @@ class MainActivity : AppCompatActivity() {
             binding.imageGuess.setImageResource(R.drawable.ic_pic_foreground)
             binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
             isGuessSelected = false
+            binding.wonCount.text = "0"
+            binding.lostCount.text = "0"
+            wins = 0
+            losses = 0
+
         }
     }
 

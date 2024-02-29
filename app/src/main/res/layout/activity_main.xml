@@ -11,6 +11,7 @@
         android:id="@+id/switchStart"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginBottom="16dp"
         android:text="@string/start_game"
         android:textSize="18sp"
@@ -160,7 +161,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/wonCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
