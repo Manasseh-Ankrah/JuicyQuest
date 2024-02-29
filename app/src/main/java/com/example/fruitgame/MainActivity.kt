@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var isToggled: Boolean = false
     private var isGuessSelected: Boolean = false
+    private var isRandomSelected: Boolean = false
+
     private var selectedGuessImage = R.drawable.ic_pic_foreground
     private var selectedRandomImage = R.drawable.ic_pic_foreground
 
@@ -36,50 +38,69 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
             binding.btnGrapes.setOnClickListener {
-                if (isToggled) {
-                   binding.imageGuess.setImageResource(R.drawable.grapes)
-                    isGuessSelected = true
-                    selectedGuessImage = R.drawable.grapes
-               } else {
-                   Snackbar.make(it,"Swith to start game",Snackbar.LENGTH_LONG).show()
-            }
+                handleClickedGrapes(it)
             }
 
             binding.btnApple.setOnClickListener {
-                if (isToggled) {
-                binding.imageGuess.setImageResource(R.drawable.apple)
-                    isGuessSelected = true
-                    selectedGuessImage = R.drawable.grapes
-
-                } else {
-                    Snackbar.make(it,"Swith to start game",Snackbar.LENGTH_LONG).show()
-                }
+                handleClickedApple(it)
             }
 
             binding.btnRandom.setOnClickListener {
-                val shuffle = fruitList.shuffled().first()
-                if (isToggled) {
-                    if(!isGuessSelected) {
-                        Snackbar.make(it,"Choose guess image to proceed",Snackbar.LENGTH_LONG).show()
-                    } else {
-                        binding.imageRandom.setImageResource(shuffle)
-                        selectedRandomImage = shuffle
-                        // Decide win or lose
-                        handleGameOutcome(it)
-                    }
-                } else {
-                    Snackbar.make(it,"Swith to start game",Snackbar.LENGTH_LONG).show()
-                }
-
-
+                handleClickedRandom(fruitList, it)
             }
 
 
 
 
+    }
+
+    private fun handleClickedRandom(
+        fruitList: List<Int>,
+        it: View
+    ) {
+        val shuffle = fruitList.shuffled().first()
+        if (isToggled) {
+            if (!isGuessSelected) {
+                Snackbar.make(it, "Choose guess image to proceed", Snackbar.LENGTH_LONG).show()
+            } else {
+                binding.imageRandom.setImageResource(shuffle)
+                selectedRandomImage = shuffle
+                isRandomSelected = true
+                // Decide win or lose
+                handleGameOutcome(it)
+            }
+        } else {
+            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    private fun handleClickedGrapes(it: View) {
+        if (isRandomSelected) {
+            binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
+        }
+        if (isToggled) {
+            binding.imageGuess.setImageResource(R.drawable.grapes)
+            isGuessSelected = true
+            selectedGuessImage = R.drawable.grapes
+
+        } else {
+            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_LONG).show()
+        }
+    }
+
+    private fun handleClickedApple(it: View) {
+        if (isRandomSelected) {
+            binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
+        }
+        if (isToggled) {
+            binding.imageGuess.setImageResource(R.drawable.apple)
+            isGuessSelected = true
+            selectedGuessImage = R.drawable.apple
+
+        } else {
+            Snackbar.make(it, "Swith to start game", Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun handleGameOutcome(it: View) {
