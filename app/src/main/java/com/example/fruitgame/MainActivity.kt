@@ -8,6 +8,7 @@ import com.example.fruitgame.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     //Initializing bindings
     private lateinit var binding: ActivityMainBinding
+    private var toggleImage: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -18,8 +19,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
         // Log.w("Clicked","Clicked Grapes")
 
+
         val fruitList = listOf(R.drawable.apple,R.drawable.grapes,R.drawable.orange)
 
+        binding.switchStart.setOnCheckedChangeListener {_, isChecked ->
+            handleStart(isChecked)
+        }
 
         binding.btnGrapes.setOnClickListener {
             binding.imageGuess.setImageResource(R.drawable.grapes)
@@ -35,5 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun handleStart(isChecked:Boolean) {
+        Log.w("Switch Toggled","value $isChecked")
+        toggleImage = isChecked
     }
 }
