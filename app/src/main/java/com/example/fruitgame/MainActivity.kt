@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.fruitgame.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
     //Initializing bindings
     private lateinit var binding: ActivityMainBinding
-    private var toggleImage: Boolean = false
+    private var isToggled: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -24,26 +25,57 @@ class MainActivity : AppCompatActivity() {
 
         binding.switchStart.setOnCheckedChangeListener {_, isChecked ->
             handleStart(isChecked)
+            handleReset(isChecked)
         }
 
-        binding.btnGrapes.setOnClickListener {
-            binding.imageGuess.setImageResource(R.drawable.grapes)
+
+
+
+
+            binding.btnGrapes.setOnClickListener {
+                if (isToggled) {
+                Log.w("Switch Toggled","value $isToggled")
+                   binding.imageGuess.setImageResource(R.drawable.grapes)
+               } else {
+                   Snackbar.make(it,"Swith to start game",Snackbar.LENGTH_LONG).show()
+            }
+            }
+
+            binding.btnApple.setOnClickListener {
+                if (isToggled) {
+                    Log.w("Switch Toggled","value $isToggled")
+                binding.imageGuess.setImageResource(R.drawable.apple)
+                } else {
+                    Snackbar.make(it,"Swith to start game",Snackbar.LENGTH_LONG).show()
+                }
+            }
+
+            binding.btnRandom.setOnClickListener {
+                val shuffle = fruitList.shuffled().first()
+                if (isToggled) {
+                    Log.w("Switch Toggled","value $isToggled")
+                binding.imageRandom.setImageResource(shuffle)
+                } else {
+                    Snackbar.make(it,"Swith to start game",Snackbar.LENGTH_LONG).show()
+                }
+
+            }
+
+
+
+
+    }
+
+    private fun handleReset(isChecked: Boolean) {
+        if (!isChecked) {
+            Log.w("Switch isChecked", "value $isChecked")
+            binding.imageGuess.setImageResource(R.drawable.ic_pic_foreground)
+            binding.imageRandom.setImageResource(R.drawable.ic_pic_foreground)
         }
-
-        binding.btnApple.setOnClickListener {
-            binding.imageGuess.setImageResource(R.drawable.apple)
-        }
-
-        binding.btnRandom.setOnClickListener {
-            val shuffle = fruitList.shuffled().first()
-            binding.imageRandom.setImageResource(shuffle)
-
-        }
-
     }
 
     private fun handleStart(isChecked:Boolean) {
         Log.w("Switch Toggled","value $isChecked")
-        toggleImage = isChecked
+        isToggled= isChecked
     }
 }
