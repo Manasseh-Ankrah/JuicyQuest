@@ -105,7 +105,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleGameOutcome(it: View) {
         if (selectedGuessImage === selectedRandomImage) {
-            Snackbar.make(it, "Congratulations, you won!", Snackbar.LENGTH_SHORT).show()
+           var snack = Snackbar.make(it, "Congratulations, you won!", Snackbar.LENGTH_SHORT)
+            snack.show()
             wins++
             binding.wonCount.text = wins.toString()
         } else {
