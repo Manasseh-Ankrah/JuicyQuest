@@ -5,4 +5,6 @@
     <string name="grapes">GRAPES</string>
     <string name="apple">APPLE</string>
     <string name="random">RANDOM</string>
+    <string name="random_image">Random Image</string>
+    <string name="guess_image">Guess Image</string>
 </resources>
