@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val fruitList = listOf(R.drawable.apple,R.drawable.grapes,R.drawable.orange)
 
+
         binding.switchStart.setOnCheckedChangeListener {_, isChecked ->
             handleSwitchText(isChecked)
             handleStart(isChecked)
